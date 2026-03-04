@@ -703,4 +703,5 @@ const App = (() => {
     adminWorkUpsert, adminAllocSet, adminEmailSet,
     adminConfigSave, adminUploadLogo, adminCloseMonth, adminReopenMonth
   };
+
 })();
