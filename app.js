@@ -37,16 +37,26 @@ const App = (() => {
     $("inpData").value = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
 
-  async function api(action, payload){
-const res = await fetch(API_URL, {
-  method: "POST",
-  headers: { "Content-Type": "text/plain;charset=utf-8" },
-  body: JSON.stringify({ action, ...payload })
-});
-    const json = await res.json();
-    if(!json.ok) throw new Error(json.error || "Erro na API");
-    return json.data;
+async function api(action, payload = {}) {
+
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify({ action, ...payload })
+  });
+
+  if (!res.ok) {
+    throw new Error("Erro na comunicação com servidor");
   }
+
+  const data = await res.json();
+
+  if (!data.ok) {
+    throw new Error(data.error || "Erro desconhecido");
+  }
+
+  return data.data;
+}
 
   function applyBrand(){
     document.documentElement.style.setProperty("--brand", brand.color || "#0b2a4a");
@@ -705,5 +715,6 @@ const res = await fetch(API_URL, {
   };
 
 })();
+
 
 
