@@ -364,8 +364,10 @@ const App = (() => {
         adminEmailUpsert, adminEmailRemove, sendMonthReport,
         onLogoSelected, saveConfig,
         closeMonth, reopenMonth
-    };
+          };
+
 })();
+
 
 
 
