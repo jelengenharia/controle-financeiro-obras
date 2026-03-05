@@ -3,10 +3,10 @@ const API_URL = "https://script.google.com/macros/s/AKfycbx0KwGi6RSPkKB1jg5ydmJM
 
 window.App = (() => {
     let TOKEN = "", USER = null, WORKS = [], CATEGORIAS = [];
-      console.log('CFO App carregando...');
+
     let currentObraId = "";
     let brand = { name: "Controle Financeiro de Obras", color: "#0b2a4a", logo_url: "" };
-        console.log('Login chamado');
+
     let notaUploaded = { fileId: "", url: "" };
     let logoSelectedFile = null;
     let lineChart = null;
@@ -59,11 +59,11 @@ window.App = (() => {
         const btn=document.querySelector("#loginArea .btn-primary");
         if(btn){btn.disabled=true;btn.textContent="Entrando...";}
         try{
-                    console.log('Login function chamada - inicio try');
+
             const role=$("loginRole").value;
             const username=$("loginUser").value.trim();
             const password=$("loginPass").value;
-            if(!username) throw new Error("Informe o usuário.");
+            
             if(!password) throw new Error("Informe a senha.");
             const r=await api("auth.login",{role,username,password});
             TOKEN=r.token; USER=r.user; WORKS=r.works||[]; CATEGORIAS=r.categorias||[]; brand=r.brand||brand;
@@ -371,6 +371,7 @@ window.App = (() => {
           };
 
 })();
+
 
 
 
